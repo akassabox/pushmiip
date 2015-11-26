@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+        <style type="text/css">
+
+@font-face {
+  font-family: 'museo300';
+  src: url('fonts/MuseoSansRounded-300.otf') format('opentype');
+}
+@font-face {
+  font-family: 'museo500';
+  src: url('fonts/MuseoSansRounded-500.otf') format('opentype');
+}
+@font-face {
+  font-family: 'museo700';
+  src: url('fonts/MuseoSansRounded-700.otf') format('opentype');
+}
+
+body {
+    margin: 0px auto;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+#header {
+    position: fixed;
+    width: 100%;
+    top:0px;
+    z-index: 10000;
+}
+#headerRectElement {
+    height: 59px;
+    background-color: #e3e3e3;
+    width: 100%;
+    position: absolute;
+    z-index: 99;
+    box-shadow: 1px 2px 12px rgba(0,0,0,0.36);
+}
+
+#wishlistHeader, #miipDiscovery, #SurpriseMe {
+    height: 59px;
+    background-color: #e3e3e3;
+    width: 100%;
+    position: relative;
+    z-index: 99;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.26);
+    font-family: "museo500";
+    font-size: 16px;
+    color:#5f3915;
+    vertical-align: middle;
+
+}
+
+#wishlistHeader span, #miipDiscovery span, #SurpriseMe span {
+    height: 59px;
+    width: 100%;
+    text-align: left;
+        position: absolute;
+    top: 20px;
+    left: 10px;
+
+}
+
+#HeaderMiipImage {
+    width: 320px;
+    left: 50%;
+    margin:0px 0px 0px -160px;
+    height: auto;
+    z-index: 100;
+    position: absolute;
+}
+
+.cardContainer {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scroll:touch;
+    overflow-x: hidden;
+    margin-top:120px;
+}
+
+.card {
+    width: 100%;
+    height: 400px;
+    background: white;
+    margin: 10px 0px 10px 0px;
+    text-align: center;
+    position: relative;
+}
+
+#overlayImage {
+    position: absolute;
+    bottom:0px;
+}
+
+#productDetails {
+    position: absolute;
+    bottom: 80px;
+    width: 94%;
+    height:200px;
+    text-align: center;
+    background:-webkit-linear-gradient(-90deg, rgba(241, 241, 241, 0) 0%, #f1f1f1 50%, rgba(241, 241, 241, 0) 100%);
+    padding: 0px 3%;
+}
+
+.discountPrice, .originalPrice {
+font-family: "museo700";
+display: inline-block;
+margin: 0px 5px;
+margin-top: 90px; 
+}
+
+.discountPrice {
+    font-size: 28px;
+    color:#5f3915;
+}
+
+.originalPrice {
+    color: #939393;
+    font-size: 18px;
+    text-decoration: line-through;
+
+}
+
+.producttitle {
+    font-family: "museo300";
+    font-size: 1.1em;
+    text-align: left;
+    margin: 5px 0px;
+    width: auto;
+    white-space: normal;
+    display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2;
+   overflow: hidden;
+    -webkit-text-overflow:ellipsis;
+    line-height: 1.2em;
+    height: auto;
+    color: #1b1b1b;
+
+}
+
+.button {
+    background: #5f3915;
+    font-family: "museo300";
+    font-size: 1em;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    color: white;
+    width: auto;
+    height: 20px;
+    margin-top: 8px;
+    vertical-align: middle;
+    float: left;
+
+}
+
+.centerButton {
+    clear: both;
+    font-size: 16px !important;
+    background: #5f3915;
+    font-family: "museo300";
+    font-size: 1em;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    color: white;
+    width: 80px;
+    position: relative;
+    height: 20px;
+margin:15px auto;
+
+}
+
+#extraButtons {
+    float: right;
+    margin-top: 8px;
+}
+#extraButtons div {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#notifyMeButton {
+    background: url("images/notifyMe.png") no-repeat;
+    background-size: 100% auto;
+    height: 32px;
+    width: 32px;
+}
+
+.notifyMeButton {
+    background: url("images/notifyMe.png") no-repeat;
+    background-size: 100% auto;
+    height: 32px;
+    width: 32px;
+}
+
+.likeButton {
+    background: url("images/like.png") no-repeat;
+    background-size: 100% auto;
+    height: 32px;
+    width: 32px;
+    
+}
+
+.likedButton {
+    background:url("images/liked.png") no-repeat;
+    background-size: 100% auto;
+    height: 32px;
+    width: 32px;
+    -webkit-animation:bounce 0.5s 1;
+}
+
+.notifiedMeButton {
+    background: url("images/notifiedMe.png") no-repeat;
+    background-size: 100% auto;
+    height: 32px;
+    width: 32px;
+    -webkit-animation:bounce 0.5s 1;
+}
+
+@-webkit-keyframes bounce {
+  0%       { opacity: 1 }
+  25%, 75% { opacity: 0.8 }
+  50%      { opacity: 0.6 }
+  100%     { opacity: 1 }
+}
+
+.bottomButton {
+    font-family: "museo500";
+    font-size: 14px;
+    z-index: 200;
+    text-align: center;
+}
+table {
+    height: 100%;
+}
+td {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: #5f3915;
+}
+#footer {
+    font-family: "museo300";
+    font-size: 14px;
+    height: 38px;
+    line-height: 18px;
+    color: #666666;
+    text-align: center;
+}
+
+#myWishList {
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.26);
+}
+
+#footerPanel {
+    width: 100%;
+    background: #e3e3e3;
+    height: 55px;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 1px -2px 32px rgba(0,0,0,0.10);
+    z-index: 99999;
+    color:#5f3915;
+
+}
+
+#infoButton, #home {
+        font-family: "museo500";
+    font-size: 12px;
+    color: #5f3915;
+    height: 15px;
+    text-align: center;
+    padding-top: 2px;
+    top:30px;
+    right: 10px;
+    position: absolute;
+    z-index: 200;
+}
+
+#home {
+left: 10px;
+right: auto;
+}
+
+#notificationPopup {
+    font-family: 'museo300';
+    font-size: 18px;
+    text-align: center;
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    background: #e3e3e3;
+    box-shadow: 1px 0px 12px rgba(0,0,0,0.42);
+    padding: 2%;
+    padding-top: 20px;
+    position: fixed;
+    top:50%;
+    margin-top: -50px;
+    right: 10%;
+    z-index: 99999;
+
+
+}
+#notificationPopup input {
+    width: 30px;
+    background: transparent;
+    border:none;
+    border-bottom: 2px solid #5f3915;
+    outline: 0;
+    text-align: center;
+    font-family: 'museo500';
+    font-size: 18px;
+    color: #5f3915;
+
+}
+
+input:focus{
+outline:none;
+}
+
+
+@-webkit-keyframes FadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    top:0;
+    left: 0;
+    display: none;
+    z-index: 99999;
+          -webkit-animation-name: FadeIn;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 0.3s;
+}
+
+</style>
+    </head>
+
+   <script src="config.js"></script>
+    <script src="demo.js"></script>
+    <script src="main.js"></script>
+
+    <body>
+        <div class="app">
+         <div id="container">
+    
+    <div id="header">
+        <div id="headerRectElement">
+
+        </div>
+        <div id="HeaderMiipImage"><img src="images/headerMiip.png" width="100%"></div>
+    <div id="home">Get Miip App now!</div>
+    <div id="infoButton">More about me</div>
+    </div>
+
+    <div class="cardContainer"> 
+
+<!-- Sample Card Container -->
+<!--    <div id="card1" class="card">
+    <img class="productImage" src="http://i5.walmartimages.com/dfw/dce07b8c-2aad/k2-_42e3af02-229f-4507-b253-efd8389362e5.v1.jpg" height="200px" />
+    <div id="productDetails">
+        <div id="price" class="discountPrice">$29</div>
+        <div id="price2" class="originalPrice">$32</div>
+        <div id="productTitle" class="producttitle">Nest Learning Touch Home/Office Heating/Cooling Smart Thermostat with WiFi</div>
+        <div id="buyNowButton" class="button">Shop now on ' + data[i]["merchantName"] + '</div>
+        <div id="extraButtons">
+            <div id="notifyMeButton"><img src="images/notifyMe.png" width="30px" /></div>
+            <div id="likeButton"><img src="images/like.png" width="30px" /></div>
+        </div>
+    </div>
+    </div> -->
+    </div>
+    <div id="footerPanel">
+    <table width="100%">
+    <tr>
+    <td>
+        <a href="#myWishList" ><div class="bottomButton"> My wishlist </div></a>
+        </td>
+        <td><div class="bottomButton">|</div></td>
+        <td>
+        <a href="#miipDiscovery"><div class="bottomButton"> Recommended </div></a>
+        </td>
+        <td><div class="bottomButton">|</div></td>
+        <td>
+        <a href="surprise.html"><div class="bottomButton"> Surprise Me </div></a>
+        </td>
+        </tr>
+        </table>
+
+    </div>
+    <div id="footer">Powered by Inmobi</div><br /><br /><br />
+
+    <div id="overlay">
+    <div id="notificationPopup">
+        
+        <span>I'am ok if you send me </span>
+        <input type="text" id="notificationNo" value="3" /> <span> miip notification(s) a day.</span><br>
+        <div id="submitNotifications" class="centerButton" onclick="this.parentElement.parentElement.style.display='none'">Get started</div>
+
+    </div>
+    </div>
+
+</div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+
+        </script>
+        <script type="text/javascript">
+  var imageNotified = new Image();
+  imageNotified.src="images/notifiedMe.png";
+
+  var imageLiked = new Image();
+  imageLiked.src="images/liked.png";
+
+  var sessionData = sessionStorage.getItem("products");
+  var sessionDataFlag = false;
+
+  var sessionDataLength = 0;
+  if(sessionData) {
+    try {
+    sessionData = JSON.parse(sessionData);
+    sessionDataLength = Object.keys(sessionData).length;
+        if(sessionDataLength > 0) {
+            sessionDataFlag = true;
+        }
+    } catch (e) {
+    sessionData = new Object();
+    }
+
+  } 
+  else {
+    sessionData = new Object();
+  }
+
+
+
+  var  data = [
+    {
+        "discountPrice": "$ 209",
+        "originalPrice": "$ 230",
+        "productTitle": "Beats Studio Over Ear Headphones Assorted Colors",
+        "imageURL": "http://i5.walmartimages.com/dfw/dce07b8c-30aa/k2-_3cdfc5a9-9d18-4dd5-b2d3-df00d9d249c6.v1.jpg",
+        "productID": "V1",
+        "itemURL": "http://www.amazon.in/gp/product/B010BGCEEM/ref=br_asw_pdt-24?pf_rd_m=A1VBAL9TL5WCBF&pf_rd_s=desktop-4&pf_rd_r=1WXTJF3CC4GCKZ1XKCCV&pf_rd_t=36701&pf_rd_p=701600567&pf_rd_i=desktop",
+        "merchantName" : "Target"
+    },
+    {
+        "discountPrice": "$ 119",
+        "originalPrice": "$ 169",
+        "productTitle": "Beats by Dr. Dre Drenched Solo Over Ear Headphones, Assorted Colors",
+        "imageURL": "http://i5.walmartimages.com/dfw/dce07b8c-2aad/k2-_42e3af02-229f-4507-b253-efd8389362e5.v1.jpg",
+        "productID": "V2",
+        "itemURL": "http://www.amazon.in/gp/product/B010BGCEEM/ref=br_asw_pdt-24?pf_rd_m=A1VBAL9TL5WCBF&pf_rd_s=desktop-4&pf_rd_r=1WXTJF3CC4GCKZ1XKCCV&pf_rd_t=36701&pf_rd_p=701600567&pf_rd_i=desktop",
+        "merchantName" : "Amazon"
+    },
+    {
+        "discountPrice": "$ 679",
+        "originalPrice": "$ 809",
+        "productTitle": "Fitbit Flex Wireless Wristband, Tracks steps, distance and calories.",
+        "imageURL": "http://i5.walmartimages.com/dfw/dce07b8c-b64d/k2-_9968a701-a348-4fe9-b6d0-657dc94c9774.v2.jpg",
+        "productID": "V3",
+        "itemURL": "http://www.amazon.in/gp/product/B010BGCEEM/ref=br_asw_pdt-24?pf_rd_m=A1VBAL9TL5WCBF&pf_rd_s=desktop-4&pf_rd_r=1WXTJF3CC4GCKZ1XKCCV&pf_rd_t=36701&pf_rd_p=701600567&pf_rd_i=desktop",
+        "merchantName" : "Amazon"
+    },
+    {
+        "discountPrice": "$ 399",
+        "originalPrice": "$ 410",
+        "productTitle": "GoPro HERO4 Silver Action Camera CHDHY-401",
+        "imageURL": "http://i5.walmartimages.com/dfw/dce07b8c-c265/k2-_ea66a026-45ab-464f-8f41-9d067ca367b8.v1.jpg",
+        "productID": "V4",
+        "itemURL": "http://www.amazon.in/gp/product/B010BGCEEM/ref=br_asw_pdt-24?pf_rd_m=A1VBAL9TL5WCBF&pf_rd_s=desktop-4&pf_rd_r=1WXTJF3CC4GCKZ1XKCCV&pf_rd_t=36701&pf_rd_p=701600567&pf_rd_i=desktop",
+        "merchantName" : "Target"
+    },
+    {
+        "discountPrice": "$ 19",
+        "originalPrice": "$ 25",
+        "productTitle": "Philips AquaTouch S5050/06 Shaver",
+        "imageURL": "http://ecx.images-amazon.com/images/I/811M-ySICWL._SL1500_.jpg",
+        "productID": "V5",
+        "itemURL": "http://www.amazon.in/gp/product/B010BGCEEM/ref=br_asw_pdt-24?pf_rd_m=A1VBAL9TL5WCBF&pf_rd_s=desktop-4&pf_rd_r=1WXTJF3CC4GCKZ1XKCCV&pf_rd_t=36701&pf_rd_p=701600567&pf_rd_i=desktop",
+        "merchantName" : "Amazon"
+    }
+
+];
+
+var dataRecommended = [{
+        "discountPrice": "$ 49",
+        "originalPrice": "$ 100",
+        "productTitle": "Canon PIXMA MG2922 Wireless Inkjet All-In-One Printer/Copier/Scanner",
+        "imageURL": "http://ll-us-i5.wal.co/dfw/dce07b8c-358e/k2-_d81a6e86-164a-4831-8f04-3142a978d5f3.v1.jpg",
+        "productID": "T44",
+        "itemURL": "http://www.walmart.com/ip/Canon-PIXMA-MG2922-Wireless-Inkjet-All-In-One-Printer-Copier-Scanner-Blue/39082745",
+        "merchantName" : "Walmart"
+    },
+    {
+        "discountPrice": "$ 119",
+        "originalPrice": "$ 301",
+        "productTitle": "Pioneer Car Audio Bundle includes CD Receiver plus (4) Speakers #DXT-X2769UI",
+        "imageURL": "http://i5.walmartimages.com/dfw/dce07b8c-8492/k2-_a39ca8d4-ee94-4d98-ad8e-9ed839439dd6.v3.jpg",
+        "productID": "T55",
+        "itemURL": "http://www.walmart.com/ip/Pioneer-Car-Audio-Bundle-includes-CD-Receiver-plus-4-Speakers-DXT-X2769UI/38335638",
+        "merchantName" : "Walmart"
+    }];
+
+
+var finalhtml = "";
+var cardContainer = document.querySelector(".cardContainer");
+var currentProductId = 1;
+for(var i=0; i<data.length;i++) {
+ finalhtml += '<div id="card' + i + '" productId="' + data[i]["productID"] + '" class="card"><img class="productImage" src="' + data[i]["imageURL"] + '" height="200px" /><div id="productDetails"><div id="price" class="discountPrice">' + data[i]["discountPrice"] + '</div><div id="price2" class="originalPrice">' + data[i]["originalPrice"] + '</div><div id="productTitle" class="producttitle">' + data[i]["productTitle"] + '</div><div id="buyNowButton" class="button" eventHandler="buyNow(this)">Shop now on ' + data[i]["merchantName"] + '</div><div id="extraButtons"><div class="notifyMeButton" id="notifyButton" eventHandler="notifyMe(this)"></div><div class="likeButton" eventHandler="likeMe(this)"></div></div></div></div>';
+}
+
+
+if(sessionDataFlag) {
+    finalhtml += '<div id="myWishList"><div id="wishlistHeader" style="margin-bottom:30px;"> <span>My wishlist - products you liked.</span></div></div>';
+    var wishlistLength = sessionDataLength <= 3 ? sessionDataLength : 3;
+    var tempData;
+
+    for(var key in sessionData) {
+        tempData = JSON.parse(sessionData[key]);
+         finalhtml += '<div id="card' + i + '" productId="' + tempData["productID"] + '" class="card"><img class="productImage" src="' + tempData["imageURL"] + '" height="200px" /><div id="productDetails"><div id="price" class="discountPrice">' + tempData["discountPrice"] + '</div><div id="price2" class="originalPrice">' + tempData["originalPrice"] + '</div><div id="productTitle" class="producttitle">' + tempData["productTitle"] + '</div><div id="buyNowButton" class="button" eventHandler="buyNow(this)">Shop now on ' + tempData["merchantName"] + '</div><div id="extraButtons"><div class="notifyMeButton" id="notifyButton" eventHandler="notifyMe(this)"></div><div class="likedButton" eventHandler="likeMe(this)"></div></div></div></div>';
+    }
+}
+
+
+finalhtml += '<div id="miipDiscovery"><div id="wishlistHeader" style="margin-bottom:30px;"> <span>Recommended - Only for you.</span></div></div><br>';
+
+
+for(var i=0; i<2;i++) {
+ finalhtml += '<div id="card' + i + '" productId="' + dataRecommended[i]["productID"] + '" class="card"><img class="productImage" src="' + dataRecommended[i]["imageURL"] + '" height="200px" /><div id="productDetails"><div id="price" class="discountPrice">' + dataRecommended[i]["discountPrice"] + '</div><div id="price2" class="originalPrice">' + dataRecommended[i]["originalPrice"] + '</div><div id="productTitle" class="producttitle">' + dataRecommended[i]["productTitle"] + '</div><div id="buyNowButton" class="button" eventHandler="buyNow(this)">Shop now on ' + dataRecommended[i]["merchantName"] + '</div><div id="extraButtons"><div class="notifyMeButton" id="notifyButton" eventHandler="notifyMe(this)"></div><div class="likeButton" eventHandler="likeMe(this)"></div></div></div></div>';
+}
+
+
+
+
+
+cardContainer.innerHTML = (finalhtml);
+
+var container =document.getElementById("container");
+
+container.addEventListener('click',function(e){
+    var srcElement = mainTarget = e.target;
+    var productId;
+
+    if(mainTarget.hasAttribute('eventHandler')) {
+
+        while(srcElement.getAttribute('class') != 'card') {
+            srcElement = srcElement.parentElement;
+        }
+
+        productId = srcElement.getAttribute("productId");
+        currentProductId = productId;
+
+
+        var eventHandlerFunction = mainTarget.getAttribute('eventHandler');
+        eventHandlerFunction = eventHandlerFunction.split('(')[0];
+        var fn = window[eventHandlerFunction];
+        if(fn) fn(mainTarget,'click', e);
+    } 
+
+}, false);
+
+
+function getDataByProductKey(code) {
+  return data.filter(
+      function(data){return (data.productID == code)}
+  );
+}
+
+function getDataByProductKeyTemp(code) {
+  return dataRecommended.filter(
+      function(data){return (data.productID == code)}
+  );
+}
+
+
+function buyNow(target, e) {
+    //console.log(sessionStorage.getItem('products'));
+     res = getDataByProductKey(currentProductId);
+     if(res[0] == null)
+        res = getDataByProductKeyTemp(currentProductId);
+     window.open(res[0]["itemURL"],'_blank');
+}
+
+
+function notifyMe(target, e) {
+    if(target.className == "notifyMeButton"){
+        target.className = "notifiedMeButton";
+        document.querySelector("#overlay").style.display = "block";
+        subscribe();
+    } else {
+        target.className = "notifyMeButton";
+        unsubscribe();
+    }
+
+
+
+    // if(!sessionData.hasOwnProperty(currentProductId)) {
+    // sessionData[currentProductId] = JSON.stringify(getDataByProductKey(currentProductId)[0]);
+    // sessionStorage.setItem("products", JSON.stringify(sessionData));
+    // }
+
+}
+
+
+function likeMe(target, e) {
+    if(target.className == "likeButton"){
+        target.className = "likedButton";
+    } else {
+        target.className = "likeButton";
+    }
+
+    if(!sessionData.hasOwnProperty(currentProductId)) {
+    sessionData[currentProductId] = JSON.stringify(getDataByProductKey(currentProductId)[0]);
+    sessionStorage.setItem("products", JSON.stringify(sessionData));
+    }
+    else {
+        delete sessionData[currentProductId];
+        sessionStorage.setItem("products", JSON.stringify(sessionData));
+    }
+
+}
+ </script>
+    </body>
+</html>
